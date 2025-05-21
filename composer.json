@@ -1,0 +1,21 @@
+{
+    "name": "kingwebmaster/module-shipping",
+
+    "description": "Magento Shipping",
+
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "version": "1.0.8",
+    "type": "magento2-module",
+
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Kingwebmaster\\Shipping\\": ""
+        }
+    }
+}

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="testingproduct">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Advanced Shipping Manager</item>
+                <item name="provider" xsi:type="string">product</item>
+                <item name="dataScope" xsi:type="string">data.product</item>
+                <item name="sortOrder" xsi:type="number">2</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+                <item name="ns" xsi:type="string">product_form</item>
+            </item>
+        </argument>
+        <container name="testing_group">
+            <field name="dimension" sortOrder="130" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Dimensions</label>
+                </settings>
+            </field>
+            <field name="free_ship" sortOrder="131" formElement="checkbox">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>boolean</dataType>
+                    <label translate="true">Free Shipping</label>
+                    <dataScope>free_ship</dataScope>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="number">0</map>
+                                <map name="true" xsi:type="number">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+            <field name="free_ship_methods" sortOrder="132" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Free Ship Methods</label>
+                </settings>
+            </field>
+            <field name="ship_alone" sortOrder="133" formElement="checkbox">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>boolean</dataType>
+                    <label translate="true">Shipping Alone</label>
+                    <dataScope>ship_alone</dataScope>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="number">0</map>
+                                <map name="true" xsi:type="number">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+            <field name="flat_ship_rates" sortOrder="134" formElement="textarea">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Flat Ship Rates</label>
+                </settings>
+            </field>
+            <field name="origi_zip" sortOrder="135" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Origin Zip</label>
+                </settings>
+            </field>
+            <field name="multiple_box" sortOrder="136" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Number Of Boxes</label>
+                </settings>
+            </field>
+            <field name="multiple_box_weights" sortOrder="137" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Multiple Box Weights</label>
+                </settings>
+            </field>
+            <field name="multiple_box_dimensions" sortOrder="138" formElement="textarea">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Multiple Box Dimensions</label>
+                </settings>
+            </field>
+            <field name="invalid_methods" sortOrder="139" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Invalid Ship Methods</label>
+                </settings>
+            </field>
+            <field name="markup" sortOrder="140" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Markup</label>
+                </settings>
+            </field>
+            <field name="exclude_from_free_ship" sortOrder="141" formElement="checkbox">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>boolean</dataType>
+                    <label translate="true">Exclude From Free Ship</label>
+                    <dataScope>exclude_from_free_ship</dataScope>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="number">0</map>
+                                <map name="true" xsi:type="number">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+            <field name="invalid_states" sortOrder="142" formElement="textarea">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Exclude States</label>
+                </settings>
+            </field>
+            <field name="invalid_countries" sortOrder="143" formElement="textarea">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Exclude Countries</label>
+                </settings>
+            </field>
+            <field name="item_points" sortOrder="144" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Item Points</label>
+                </settings>
+            </field>
+            <field name="multiple_box_points" sortOrder="145" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Multiple Box Points</label>
+                </settings>
+            </field>
+            <field name="bundled_qty" sortOrder="146" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Bundled Quantity</label>
+                </settings>
+            </field>
+            <field name="bundled_weight" sortOrder="147" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Bundled Weight</label>
+                </settings>
+            </field>
+            <field name="bundled_dimensions" sortOrder="148" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Bundled Dimensions</label>
+                </settings>
+            </field>
+            <field name="bundled_points" sortOrder="149" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Bundled Points</label>
+                </settings>
+            </field>
+            <field name="process_time" sortOrder="150" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Process Time</label>
+                </settings>
+            </field>
+            <field name="haz_mat" sortOrder="151" formElement="checkbox">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>boolean</dataType>
+                    <label translate="true">Hazmat</label>
+                    <dataScope>haz_mat</dataScope>
+                </settings>
+                <formElements>
+                    <checkbox>
+                        <settings>
+                            <valueMap>
+                                <map name="false" xsi:type="number">0</map>
+                                <map name="true" xsi:type="number">1</map>
+                            </valueMap>
+                            <prefer>toggle</prefer>
+                        </settings>
+                    </checkbox>
+                </formElements>
+            </field>
+            <field name="options_weight_points" sortOrder="152" formElement="textarea">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <label translate="true">Options Weight Points</label>
+                </settings>
+            </field>
+            <field name="custom1" sortOrder="153" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Custom 1</label>
+                </settings>
+            </field>
+            <field name="custom2" sortOrder="154" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Custom 2</label>
+                </settings>
+            </field>
+            <field name="custom3" sortOrder="155" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Custom 3</label>
+                </settings>
+            </field>
+            <field name="custom4" sortOrder="156" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Custom 4</label>
+                </settings>
+            </field>
+            <field name="custom5" sortOrder="157" formElement="input">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">page</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>string</dataType>
+                    <label translate="true">Custom 5</label>
+                </settings>
+            </field>
+        </container>
+    </fieldset>
+</form>

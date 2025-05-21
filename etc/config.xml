@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <asmext>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Kingwebmaster\Shipping\Model\Carrier\Shippingapi</model>
+                <name>Advanced Shipping</name>
+                <price></price>
+                <title>Advanced Shipping Manager</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+                <sort_order>100</sort_order>
+            </asmext>
+        </carriers>
+    </default>
+</config>
