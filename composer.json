@@ -1,22 +1,22 @@
 {
-    "name": "kingwebmaster/module-shipping",
-    "description": "Magento Shipping",
-    "license": [
-        "OSL-3.0",
-        "AFL-3.0"
+  "name": "kingwebmaster/module-shipping",
+  "description": "Magento Shipping",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "version": "1.0.8",
+  "type": "magento2-module",
+  "require": {
+    "php": ">=7.4",
+    "magento/framework": "^2.4.0"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
     ],
-    "version": "1.0.8",
-    "type": "magento2-module",
-    "require": {
-        "php": ">=7.4",
-        "magento/framework": "4.8.*"
-    },
-    "autoload": {
-        "files": [
-            "registration.php"
-        ],
-        "psr-4": {
-            "Kingwebmaster\\Shipping\\": ""
-        }
+    "psr-4": {
+      "Kingwebmaster\\Shipping\\": ""
     }
+  }
 }
