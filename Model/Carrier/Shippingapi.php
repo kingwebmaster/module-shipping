@@ -89,6 +89,65 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
     }
 
     /**
+     * Find any product attribute whose label contains "Brand" (case-insensitive)
+     * and return its value as text.
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @return string
+     */
+    protected function getBrandFromProduct(\Magento\Catalog\Model\Product $product)
+    {
+        $brandValue = '';
+
+        foreach ($product->getAttributes() as $attribute) {
+            // Get label (store label preferred)
+            $label = $attribute->getStoreLabel();
+            if (!$label) {
+                $label = $attribute->getFrontendLabel();
+            }
+            if (!$label) {
+                continue;
+            }
+
+            // Look for "brand" in the label, case-insensitive
+            if (strpos(strtolower($label), 'brand') === false) {
+                continue;
+            }
+
+            $attrCode = $attribute->getAttributeCode();
+            $value = $product->getData($attrCode);
+
+            if ($value === null || $value === '') {
+                continue;
+            }
+
+            // If this is a dropdown/multiselect, convert option id(s) to text
+            if ($attribute->usesSource()) {
+                if (is_array($value)) {
+                    $texts = [];
+                    foreach ($value as $v) {
+                        $texts[] = $attribute->getSource()->getOptionText($v);
+                    }
+                    $value = implode(', ', array_filter($texts));
+                } else {
+                    $value = $attribute->getSource()->getOptionText($value);
+                }
+            } elseif (is_array($value)) {
+                $value = implode(', ', $value);
+            }
+
+            $value = trim((string)$value);
+
+            if ($value !== '') {
+                $brandValue = $value;
+                break; // first match wins
+            }
+        }
+
+        return $brandValue;
+    }
+
+    /**
      * @param RateRequest $request
      * @return bool|Result
      */
@@ -345,6 +404,15 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
                                         <Taxable>" . $taxable . "</Taxable>
                                         <GiftCertDownloadable>" . $giftcert . "</GiftCertDownloadable>";
                 $product = $objectManager->create('Magento\Catalog\Model\Product')->load($value['product_id']);
+
+                // ---- BRAND START ----
+                $brandValue = $this->getBrandFromProduct($product);
+                if ($brandValue !== '') {
+                    $XML_CODE .= "
+                                        <Brand><![CDATA[" . $brandValue . "]]></Brand>";
+                }
+                // ---- BRAND END ----
+
                 if (isset($product['free_ship'])) {
                     $free_ship = ($product['free_ship'] == 1) ? "Y" : "N";
                 } else {
@@ -670,6 +738,15 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
                                                 <Taxable>" . $taxable . "</Taxable>
                                         <GiftCertDownloadable>" . $giftcert . "</GiftCertDownloadable>";
                     $product = $objectManager->create('Magento\Catalog\Model\Product')->load($value['product_id']);
+
+                    // ---- BRAND START ----
+                    $brandValue = $this->getBrandFromProduct($product);
+                    if ($brandValue !== '') {
+                        $XML_CODE .= "
+                                        <Brand><![CDATA[" . $brandValue . "]]></Brand>";
+                    }
+                    // ---- BRAND END ----
+
                     if (isset($product['free_ship'])) {
                         $free_ship = ($product['free_ship'] == 1) ? "Y" : "N";
                     } else {
