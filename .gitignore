@@ -1,0 +1,4 @@
+*.bak.*
+asm_apply_fixes.sh
+asm_diagnose.sh
+.idea/
