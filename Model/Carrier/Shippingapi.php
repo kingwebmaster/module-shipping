@@ -204,28 +204,59 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
             }
         }
 
+//        $TotalTaxable = 0;
+//        $TotalNonTaxable = 0;
+//
+//        if (isset($myarray[0]['items'])) {
+//            foreach ($myarray[0]['items'] as $key => $value) {
+//                if ($value['tax_amount'] == 0) {
+//                    $TotalNonTaxable += $value['price'];
+//                }
+//                if ($value['tax_amount'] != 0) {
+//                    $TotalTaxable += $value['price'];
+//                }
+//            }
+//        } else if (isset($myarray[1]['cached_items_all'])) {
+//            foreach ($myarray[1]['cached_items_all'] as $key => $value) {
+//                if ($value['tax_amount'] == 0) {
+//                    $TotalNonTaxable += $value['price'];
+//                }
+//                if ($value['tax_amount'] != 0) {
+//                    $TotalTaxable += $value['price'];
+//                }
+//            }
+//        }
+
+        $dataItems = [];
+
+        if (isset($myarray[0]['items']) && is_array($myarray[0]['items'])) {
+            $dataItems = $myarray[0]['items'];
+        } elseif (isset($myarray[1]['cached_items_all']) && is_array($myarray[1]['cached_items_all'])) {
+            $dataItems = $myarray[1]['cached_items_all'];
+        } else {
+            foreach ($quote->getAllItems() as $item) {
+                $dataItems[] = [
+                    'price' => $item->getPrice() ?? 0,
+                    'tax_amount' => $item->getTaxAmount() ?? 0,
+                ];
+            }
+        }
+
         $TotalTaxable = 0;
         $TotalNonTaxable = 0;
 
-        if (isset($myarray[0]['items'])) {
-            foreach ($myarray[0]['items'] as $key => $value) {
-                if ($value['tax_amount'] == 0) {
-                    $TotalNonTaxable += $value['price'];
-                }
-                if ($value['tax_amount'] != 0) {
-                    $TotalTaxable += $value['price'];
-                }
-            }
-        } else if (isset($myarray[1]['cached_items_all'])) {
-            foreach ($myarray[1]['cached_items_all'] as $key => $value) {
-                if ($value['tax_amount'] == 0) {
-                    $TotalNonTaxable += $value['price'];
-                }
-                if ($value['tax_amount'] != 0) {
-                    $TotalTaxable += $value['price'];
-                }
+        foreach ($dataItems as $value) {
+            $price = $value['price'] ?? 0;
+            $taxAmount = $value['tax_amount'] ?? 0;
+
+            if ($taxAmount == 0) {
+                $TotalNonTaxable += $price;
+            } else {
+                $TotalTaxable += $price;
             }
         }
+
+
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $dimension = "";
         $free_ship = "";
@@ -338,7 +369,7 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
                         <ShippingQuery>
                             <AccountIdentifier>Hsgh7Hdhwt626gsj2A</AccountIdentifier>
                             <StoreIndicator><![CDATA[" . $DomainName . "]]></StoreIndicator>
-                            <Total>" . $grand_total . "</Total>
+                            <Total>" . $getfunctions->getSubtotal() . "</Total>
                             <TotalTaxable>" . $TotalTaxable . "</TotalTaxable>
                             <TotalNonTaxable>" . $TotalNonTaxable . "</TotalNonTaxable>
                             <TotalWeight>" . $total_Weight . "</TotalWeight>
@@ -395,7 +426,7 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
                                 <Product>
                                     <Code><![CDATA[" . $sku . "]]></Code>
                                     <Qty>" . $Qty . "</Qty>
-                                    <UnitPrice>" . $base_row_total . "</UnitPrice>
+                                    <UnitPrice>" . $price . "</UnitPrice>
                                     <Attributes>
                                         <Name><![CDATA[" . $name . "]]></Name>
                                         <Price>" . $base_price . "</Price>
@@ -677,7 +708,7 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
                             <ShippingQuery>
                             <AccountIdentifier>Hsgh7Hdhwt626gsj2A</AccountIdentifier>
                             <StoreIndicator><![CDATA[" . $DomainName . "]]></StoreIndicator>
-                            <Total>" . $grand_total . "</Total>
+                            <Total>" . $getfunctions->getSubtotal() . "</Total>
                             <TotalTaxable>" . $TotalTaxable . "</TotalTaxable>
                             <TotalNonTaxable>" . $TotalNonTaxable . "</TotalNonTaxable>
                             <TotalWeight>" . $total_Weight . "</TotalWeight>
@@ -729,7 +760,7 @@ class Shippingapi extends \Magento\Shipping\Model\Carrier\AbstractCarrier implem
                                         <Product>
                                             <Code><![CDATA[" . $sku . "]]></Code>
                                             <Qty>" . $Qty . "</Qty>
-                                            <UnitPrice>" . $base_row_total . "</UnitPrice>
+                                            <UnitPrice>" . $price . "</UnitPrice>
                                             <Attributes>
                                                 <Name><![CDATA[" . $name . "]]></Name>
                                                 <Price>" . $base_price . "</Price>
